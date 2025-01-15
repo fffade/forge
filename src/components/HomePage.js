@@ -8,8 +8,10 @@
  */
 import { Routes, Route } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 
+/* The unauthenticated welcome page for visitors who are not logged in */
 function HomePageUnauthenticated()
 {
     return (
@@ -40,8 +42,12 @@ function HomePageUnauthenticated()
                 </span>
 
                 { /* Sign up area */ }
-                <span className="flex flex-col self-center">
-                    <button className="m-4 h-20 bg-blue-300 hover:bg-blue-400 text-3xl rounded-xl">Sign Up</button>
+                <span className="flex flex-col self-center items-center">
+                    <Link to="/register">
+                        <button className="m-4 h-20 pl-8 pr-8 bg-blue-300 hover:bg-blue-400 text-3xl rounded-xl">
+                            Sign Up
+                        </button>
+                    </Link>
                     <a className="text-xl text-gray-400" href="/login">or <u>login</u> to your existing account</a>
                 </span>
             </div>
@@ -49,9 +55,14 @@ function HomePageUnauthenticated()
     );
 }
 
+/* Standard home page / dashboard for logged in users */
 function HomePage()
 {
-    return HomePageUnauthenticated();
+    const { isLoggedIn } = useSelector((state) => state.session);
+
+    if(!isLoggedIn) {
+        return HomePageUnauthenticated();
+    }
 
     return (
         <div className="container-fluid flex flex-col w-full h-3/4 gap-y-16 justify-center items-center">

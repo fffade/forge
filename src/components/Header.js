@@ -10,7 +10,7 @@ import AccountHamburger from './AccountHamburger';
 
 export function HeaderButton(props)
 {
-    const style = "w-min bg-gray-50 text-2xl hover:scale-105 transition-all";
+    const style = "w-min bg-gray-50 text-2xl hover:scale-105 hover:cursor-pointer transition-all";
 
     if(props.fakeLink) {
         return <div className={style} onClick={props.customClickEvent}>{props.text}</div>
