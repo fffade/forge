@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Forge backend for API and data management.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node.js",
+    "Express",
+    "API"
+  ],
+  "author": "fffadedev",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "dotenv-safe": "^9.1.0",
+    "express": "^4.21.2",
+    "prisma": "^6.2.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1"
+  }
+}
