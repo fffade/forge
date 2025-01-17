@@ -10,7 +10,7 @@ import AccountHamburger from './AccountHamburger';
 
 export function HeaderButton(props)
 {
-    const style = "w-min bg-gray-50 text-2xl hover:scale-105 hover:cursor-pointer transition-all";
+    const style = "w-min bg-blue-100 text-2xl hover:scale-105 hover:cursor-pointer transition-all";
 
     if(props.fakeLink) {
         return <div className={style} onClick={props.customClickEvent}>{props.text}</div>
@@ -24,7 +24,7 @@ export function HeaderButton(props)
 function Header()
 {
     return (
-      <header className="flex flex-row w-full min-h-16 justify-between items-center bg-gray-50 0 p-6 shadow-md">
+      <header className="flex flex-row w-full min-h-16 justify-between items-center bg-blue-100 0 p-6 shadow-md">
         <div className="w-1/6">
             <p className="text-3xl">Forge</p>
         </div>

@@ -13,29 +13,44 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggle } from './accountHamburgerSlice';
 import { HeaderButton } from './Header';
+import { checkAuth } from './sessionSlice';
 
 
 function DropdownOption(props)
 {
     return (
-        <Link to={props.to} className="leading-loose border-b-2 border-gray-200 hover:bg-gray-200">{props.text}</Link>
+        <Link to={props.to} className="leading-loose border-b-2 border-blue-100 hover:bg-blue-100">{props.text}</Link>
     );
 }
-
 function AccountHamburger()
 {
     const isOpen = useSelector((state) => state.accountHamburger.isOpen); // Retrieve open value or not
 
+    const auth = checkAuth();
+
+    console.log('Token: ' + auth);
+
     const dispatch = useDispatch();
 
-    // Use open state to determine if options are visible
-    const dropdownActions = isOpen ?
-        (<div className="absolute flex right-0 top-20 flex-col text-center font-normal bg-gray-100 min-w-80 shadow-md">
-            <DropdownOption to="/login" text="Log in or Sign up" />
-            <DropdownOption to="/faq" text="FAQ" />
-        </div>)
-        :
-        '';
+    const loggedInOptions = (<React.Fragment>
+            <DropdownOption to="/profile" text="Profile" />
+            <DropdownOption to="/settings" text="Settings" />
+            <DropdownOption to="/logout" text="Sign out" />
+        </React.Fragment>
+    );
+
+    const notLoggedInOptions = (<React.Fragment>
+        <DropdownOption to="/login" text="Log in or Sign up" />
+        <DropdownOption to="/faq" text="FAQ" />
+    </React.Fragment>
+    );
+
+
+    const dropdownActions = isOpen ? (
+            (<div className="absolute flex right-0 top-20 flex-col text-center font-normal bg-blue-50 min-w-80 shadow-md">
+                {auth ? loggedInOptions : notLoggedInOptions}
+            </div>)
+        ) : '';
 
     return (
         <React.Fragment>
