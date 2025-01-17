@@ -7,7 +7,7 @@
 
 /* Login form */
 import { checkAuth } from "./sessionSlice";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login()
 {
@@ -30,7 +30,7 @@ function Login()
                     <input id="username" type="text" placeholder="username" className="p-2 mb-8 rounded-xl"/>
 
                     <label htmlFor="password">Password</label>
-                    <input id="password" type="text" placeholder="password" className="p-2 mb-8 rounded-xl" />
+                    <input id="password" type="password" placeholder="password" className="p-2 mb-8 rounded-xl" />
 
                     <label htmlFor="remember" className="text-xl h-4"><input id="remember" type="checkbox" className="inline w-12 h-full" />Remember me next time</label>
 
