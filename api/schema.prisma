@@ -1,0 +1,24 @@
+// Schema Prisma File
+// Omar Johnson
+// Created on 1/18/25
+
+// This file stores the relevant schema and models for the Prisma connection to the MySQL database
+
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "mysql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Account model
+model Account {
+  id       Int    @id @unique @default(autoincrement()) @map("account_id")
+  username String @unique
+  email    String @unique
+  password String
+
+  @@map("accounts")
+}

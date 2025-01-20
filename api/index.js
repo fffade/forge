@@ -8,24 +8,33 @@
  */
 
 /* Imports */
-const express = require('express');
-const { PrismaClient } = require('@prisma/client');
-const fs = require('fs');
-const dotenv = require('dotenv');
-const dotenvSafe = require('dotenv-safe');
+import express from 'express';
+import prisma from './client.js';
+import dotEnvSafe from 'dotenv-safe';
+import { loadRoutes } from './router.js';
+import bodyParser from 'body-parser';
 
 // Settings
+dotEnvSafe.config();
+
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.json());
+
+
 /* Endpoints */
-app.get('/', (req, res) => {
-    res.send({account_id: 2, username: "fffade"});
-})
+import User from './routes/user.js';
+import Authenticate from './routes/authenticate.js';
+
+loadRoutes([ Authenticate, User ], app);
+
+console.log(`Loaded API endpoints`);
+
 
 // Launch server
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`Back-end listening on port ${port}`);
 
-    /* ALWAYS GENERATE AND STORE A NEW API SECRET ON LAUNCH */
-})
+
+});
