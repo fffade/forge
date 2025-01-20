@@ -11,7 +11,8 @@ const ResponseTypes =
     UserData: 'USER_DATA',
     NoUserFound: 'NO_USER_FOUND',
     AuthFailed: 'AUTHENTICATION_FAILED',
-    AuthSuccess: 'AUTHENTICATION_OKAY'
+    AuthSuccess: 'AUTHENTICATION_OKAY',
+    AuthMismatch: 'AUTHENTICATION_MISMATCH'
 };
 
 export { ResponseTypes };

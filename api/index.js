@@ -13,21 +13,26 @@ import prisma from './client.js';
 import dotEnvSafe from 'dotenv-safe';
 import { loadRoutes } from './router.js';
 import bodyParser from 'body-parser';
+import uuidAPIKey from 'uuid-apikey';
+import fs from 'fs';
+import cors from 'cors';
 
 // Settings
 dotEnvSafe.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 
 /* Endpoints */
 import User from './routes/user.js';
+import Authorization from './routes/authorization.js';
 import Authenticate from './routes/authenticate.js';
 
-loadRoutes([ Authenticate, User ], app);
+loadRoutes([ Authorization, Authenticate, User ], app);
 
 console.log(`Loaded API endpoints`);
 
@@ -36,5 +41,10 @@ console.log(`Loaded API endpoints`);
 app.listen(port, async () => {
     console.log(`Back-end listening on port ${port}`);
 
+    // Generate a new secret for token generation and store in a file
+    const secret = uuidAPIKey.create().apiKey;
 
+    fs.writeFileSync(process.env.SECRET_PATH, secret);
+
+    console.log(`Generated new token Secret: ${secret}`);
 });
