@@ -9,6 +9,7 @@
 import { Routes, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { checkAuth } from './sessionSlice';
 
 
 /* The unauthenticated welcome page for visitors who are not logged in */
@@ -58,9 +59,7 @@ function HomePageUnauthenticated()
 /* Standard home page / dashboard for logged in users */
 function HomePage()
 {
-    const { isLoggedIn } = useSelector((state) => state.session);
-
-    if(!isLoggedIn) {
+    if(!checkAuth()) {
         return HomePageUnauthenticated();
     }
 

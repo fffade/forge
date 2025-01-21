@@ -24,7 +24,7 @@ export default {
         const password = req.body.password;
 
         if(!username || !password) {
-            return res.json({type: ResponseTypes.MissingParameter});
+            return res.json({type: ResponseTypes.MissingParameter, code: 400});
         }
 
         const matchingAccount = await prisma.account.findFirst({
@@ -35,7 +35,7 @@ export default {
         });
 
         if(!matchingAccount) {
-            return res.json({type: ResponseTypes.AuthFailed});
+            return res.json({type: ResponseTypes.AuthFailed, code: 400});
         }
 
         // Create a new access token to return to the client
@@ -44,6 +44,6 @@ export default {
 
         console.log(`Generated new access token: ${token}`);
 
-        res.json({type: ResponseTypes.AuthSuccess, data: { account: matchingAccount, access_token: token }});
+        res.json({type: ResponseTypes.AuthSuccess, code: 200, data: { account: matchingAccount, access_token: token }});
     }
 };
