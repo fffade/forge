@@ -33,14 +33,17 @@ export const authorizeCredentials = async (username, password) =>
         method: 'POST',
         body: JSON.stringify(body),
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}
+    }).catch((err) => {
+        alert("Error connecting to back-end, please report the following information to support: " + err);
+        throw err;
     });
 
-    const data = await response.json();
+    const res = await response.json();
 
     // Only auth OKAY returns a token
-    if(data.code === 200) {
-        console.log(`Access token retrieved: ${data.data.access_token}`);
-        Cookies.set('access_token', data.data.access_token);
+    if(res.code === 200) {
+        console.log(`Access token retrieved: ${res.data.access_token}`);
+        Cookies.set('access_token', res.data.access_token);
         return true;
     }
 
@@ -75,6 +78,6 @@ export const deleteAuth = () => {
 };
 
 // Create actions from reducers
-export const { authenticate } = sessionSlice.actions;
+export const { } = sessionSlice.actions;
 
 export default sessionSlice.reducer; // Export reducer

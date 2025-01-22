@@ -11,7 +11,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggle } from './accountHamburgerSlice';
+import { toggle, close } from './accountHamburgerSlice';
 import { HeaderButton } from './Header';
 import { checkAuth } from './sessionSlice';
 
@@ -45,12 +45,17 @@ function AccountHamburger()
     </React.Fragment>
     );
 
+    // Close the dropdown when any option is clicked
+    const handleClick = () => {
+        dispatch(close());
+    };
 
     const dropdownActions = isOpen ? (
-            (<div className="absolute flex right-0 top-20 flex-col text-center font-normal bg-blue-50 min-w-80 shadow-md">
+            (<div onClick={handleClick} className="absolute flex right-0 top-20 flex-col text-center font-normal bg-blue-50 min-w-80 shadow-md">
                 {auth ? loggedInOptions : notLoggedInOptions}
             </div>)
         ) : '';
+
 
     return (
         <React.Fragment>
