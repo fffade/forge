@@ -5,22 +5,8 @@
  */
 
 import Cookies from 'js-cookie';
-import { createSlice } from '@reduxjs/toolkit';
 import fetch from 'node-fetch';
 
-const initialState = {
-    isLoggedIn: false
-};
-
-export const sessionSlice = createSlice({
-    name: 'session',
-    initialState,
-    reducers: {
-        authenticate: {
-
-        }
-    }
-});
 
 // Authorize using username and password against API to retrieve an access token
 export const authorizeCredentials = async (username, password) =>
@@ -76,8 +62,3 @@ export const requireAuthRedirect = () => {
 export const deleteAuth = () => {
     document.cookie = 'access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };
-
-// Create actions from reducers
-export const { } = sessionSlice.actions;
-
-export default sessionSlice.reducer; // Export reducer

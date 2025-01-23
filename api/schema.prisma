@@ -15,10 +15,26 @@ generator client {
 
 // Account model
 model Account {
-  id       Int    @id @unique @default(autoincrement()) @map("account_id")
-  username String @unique
-  email    String @unique
+  id       Int     @id @unique @default(autoincrement()) @map("account_id")
+  username String  @unique
+  email    String  @unique
   password String
+  habits   Habit[]
 
   @@map("accounts")
+}
+
+// Habits model
+model Habit {
+  id           Int     @id @unique @default(autoincrement()) @map("habit_id")
+  description  String
+  type         String
+  difficulty   Int
+  points       Int
+  targetNumber Int
+  isDone       Int
+  accountId    Int     @map("account_id")
+  account      Account @relation(fields: [accountId], references: [id])
+
+  @@map("habits")
 }

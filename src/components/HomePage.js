@@ -9,7 +9,7 @@
 import { Routes, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { checkAuth } from './sessionSlice';
+import { checkAuth } from './session';
 
 
 /* The unauthenticated welcome page for visitors who are not logged in */

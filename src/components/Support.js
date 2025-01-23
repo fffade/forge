@@ -4,7 +4,7 @@
     A page dedicated to new users with a contact form and a link to the FAQ
     Users do not need to be logged in on this page
  */
-import { requireAuthRedirect } from "./sessionSlice";
+import { requireAuthRedirect } from "./session";
 
 /* Support page */
 function Support()

@@ -3,7 +3,7 @@
     Log Out component
     A page navigated to when a user wants to log out
  */
-import { checkAuth, deleteAuth } from "./sessionSlice";
+import { checkAuth, deleteAuth } from "./session";
 import { useNavigate } from "react-router";
 
 /* Log out page */

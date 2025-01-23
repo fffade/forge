@@ -6,7 +6,7 @@
  */
 
 /* Login form */
-import { authorizeCredentials, checkAuth } from "./sessionSlice";
+import { authorizeCredentials, checkAuth } from "./session";
 import { Link, useSearchParams } from "react-router-dom";
 
 function Login()

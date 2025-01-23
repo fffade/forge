@@ -8,12 +8,10 @@
     - LOGGED IN: PROFILE, SETTINGS, LOG OUT
     - NOT LOGGED IN: LOG IN/SIGN UP
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggle, close } from './accountHamburgerSlice';
 import { HeaderButton } from './Header';
-import { checkAuth } from './sessionSlice';
+import { checkAuth } from './session';
 
 
 function DropdownOption(props)
@@ -24,13 +22,9 @@ function DropdownOption(props)
 }
 function AccountHamburger()
 {
-    const isOpen = useSelector((state) => state.accountHamburger.isOpen); // Retrieve open value or not
+    const [isOpen, setIsOpen] = useState(false);
 
-    const auth = checkAuth();
-
-    console.log('Token: ' + auth);
-
-    const dispatch = useDispatch();
+    const auth = checkAuth(); // Determine whether logged in
 
     const loggedInOptions = (<React.Fragment>
             <DropdownOption to="/profile" text="Profile" />
@@ -45,13 +39,16 @@ function AccountHamburger()
     </React.Fragment>
     );
 
-    // Close the dropdown when any option is clicked
-    const handleClick = () => {
-        dispatch(close());
+    const toggle = () => {
+        setIsOpen((state) => !state);
+    };
+
+    const close = () => {
+      setIsOpen(() => false);
     };
 
     const dropdownActions = isOpen ? (
-            (<div onClick={handleClick} className="absolute flex right-0 top-20 flex-col text-center font-normal bg-blue-50 min-w-80 shadow-md">
+            (<div onClick={close} className="absolute flex right-0 top-20 flex-col text-center font-normal bg-blue-50 min-w-80 shadow-md">
                 {auth ? loggedInOptions : notLoggedInOptions}
             </div>)
         ) : '';
@@ -59,7 +56,7 @@ function AccountHamburger()
 
     return (
         <React.Fragment>
-            <HeaderButton fakeLink={true} customClickEvent={() => dispatch(toggle())} text="Account" className="relative inline-block" />
+            <HeaderButton fakeLink={true} customClickEvent={() => toggle()} text="Account" className="relative inline-block" />
             {dropdownActions}
         </React.Fragment>
     );

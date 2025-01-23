@@ -31,8 +31,9 @@ app.use(cors());
 import User from './routes/user.js';
 import Authorization from './routes/authorization.js';
 import Authenticate from './routes/authenticate.js';
+import Habits from './routes/habits.js';
 
-loadRoutes([ Authorization, Authenticate, User ], app);
+loadRoutes([ Authorization, Authenticate, User, Habits ], app);
 
 console.log(`Loaded API endpoints`);
 
