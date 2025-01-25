@@ -26,15 +26,16 @@ model Account {
 
 // Habits model
 model Habit {
-  id           Int     @id @unique @default(autoincrement()) @map("habit_id")
-  description  String
-  type         String
-  difficulty   Int
-  points       Int
-  targetNumber Int
-  isDone       Int
-  accountId    Int     @map("account_id")
-  account      Account @relation(fields: [accountId], references: [id])
+  id            Int     @id @unique @default(autoincrement()) @map("habit_id")
+  description   String
+  type          String
+  difficulty    Int
+  points        Int
+  targetNumber  Int
+  currentNumber Int
+  isDone        Int
+  accountId     Int     @map("account_id")
+  account       Account @relation(fields: [accountId], references: [id])
 
   @@map("habits")
 }
