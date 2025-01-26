@@ -7,9 +7,6 @@
 
     Future: Leaderboard and more!
  */
-import {Routes, Route, useNavigate} from 'react-router';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { requireAuthRedirect } from './session';
 import { getHabits } from "./api";

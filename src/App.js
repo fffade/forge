@@ -12,6 +12,7 @@ import Support from './components/Support';
 import Logout from './components/Logout';
 import Login from "./components/Login";
 import Habits from "./components/Habits";
+import AddHabit from "./components/AddHabit";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/" element={<HomePage />} />
             <Route path="/support" element={<Support />} />
             <Route path="/habits" element={<Habits /> } />
+            <Route path="/add-habit" element={<AddHabit /> } />
             <Route path="/logout" element={<Logout />} />
             <Route path="/login" element={<Login />} />
         </Routes>
