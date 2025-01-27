@@ -10,6 +10,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { requireAuthRedirect } from './session';
 import { getHabits } from "./api";
+import { OptionsField } from './Form';
 
 /* Habit form */
 function AddHabit()
@@ -27,7 +28,7 @@ function AddHabit()
         <div className="container-fluid flex flex-col w-full h-full justify-center items-center">
 
             { /* Begin form */ }
-            <form id="add-habit" className="container-fluid flex flex-col w-1/3 h-2/3 p-16 items-center gap-y-8 bg-gray-200 rounded-xl shadow-md">
+            <form id="add-habit" className="container-fluid flex flex-col w-1/3 min-h-3/5 p-16 items-center gap-y-8 bg-gray-200 rounded-xl shadow-md">
 
                 <h1 className="text-3xl">Add a New Habit</h1>
 
@@ -35,19 +36,19 @@ function AddHabit()
                     <input id="description" type="text" name="description" placeholder="For example: Floss my teeth" className="w-full p-2 rounded-xl" />
                 </label>
 
-                <label htmlFor="type" className="inline text-xl w-full">How do you want to measure your progress?
-                    <input id="type-0" type="radio" name="type" value="0" className="w-full p-2 rounded-xl" />
-                    { /* Special choice buttons */ }
-                </label>
+                <OptionsField prompt="How do you want to measure your progress?" name="type" options={
+                    [{value: 'DO', text: 'Perform a task daily', checked: true}, {value: 'DNT', text: 'Avoid one thing daily'},
+                        {value: 'MIN', text: 'Perform a task a minimum number of times'}, {value: 'MAX', text: 'Avoid doing something more than a specified # of times'}]
+                } />
 
                 { /* Only visible for number-based habits */ }
-                <label htmlFor="target" className="inline text-xl w-full">How do you want to measure your progress?
+                <label htmlFor="target" className="inline text-xl w-full">Set a minimum target: { /* Set a limit */ }
                     <input id="target" type="number" name="target" value="1" className="block w-12 p-2 rounded-xl" />
                 </label>
 
                 <span className="flex flex-row w-full justify-between">
                     <label htmlFor="difficulty" className="inline text-xl w-1/2">How hard do you perceive your goal?
-                        <select id="difficulty" name="difficulty" className="block w-1/5 p-2 rounded-xl">
+                        <select id="difficulty" name="difficulty" className="block w-1/3 p-2 rounded-xl">
                             <option value="0" className="bg-red-100">Trivial</option>
                             <option value="1" className="bg-red-300">Normal</option>
                             <option value="2" className="bg-red-500">Difficult</option>
@@ -61,7 +62,10 @@ function AddHabit()
                     </label>
                 </span>
 
-                <button id="submit" type="submit" className="">Add</button>
+                <span className="flex flex-col items-center gap-y-4">
+                    <button id="submit" type="submit" className="text-xl h-12 pl-8 pr-8 bg-blue-300 hover:bg-blue-400 rounded-xl">Add</button>
+                    <a id="cancel" onClick={() => {}} href="#" className="text-lg text-red-500 underline">Cancel</a>
+                </span>
 
             </form>
 
