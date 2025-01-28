@@ -10,6 +10,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { requireAuthRedirect } from './session';
 import { getHabits } from "./api";
+import {useNavigate} from "react-router";
 
 /* Single habit on the list */
 function Habit(props)
@@ -49,6 +50,8 @@ function Habit(props)
 /* Habits page */
 function Habits()
 {
+    const navigate = useNavigate();
+
     // Must be logged in to view habits
     requireAuthRedirect();
 
@@ -87,7 +90,7 @@ function Habits()
                 { /* Top bar of habits with controls buttons */ }
                 <span className="flex flex-row justify-between p-4 border-b-2 border-b-neutral-300">
                     <h2 className="text-3xl text-neutral-500 uppercase font-bold">Habits</h2>
-                    <button className="text-2xl text-neutral-400">New <i className="text-2xl fa-solid fa-plus"/></button>
+                    <button className="text-2xl text-neutral-400" onClick={() => navigate('/add-habit')}>New <i className="text-2xl fa-solid fa-plus"/></button>
                 </span>
 
                 <div className="flex flex-col justify-start p-4">

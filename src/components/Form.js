@@ -15,7 +15,12 @@ function OptionsField(props)
     const { prompt, name } = props;
 
     const handleClick = (event) => {
+
         setSelectedOption(event.target.getAttribute('i'));
+
+        // Refresh and return value of option
+        if(props.refresh)
+            props.refresh(event.target.value);
     };
 
     return (
