@@ -27,10 +27,10 @@ export default {
         });
 
         if(!account) {
-            return res.send({type: ResponseTypes.NoUserFound});
+            return res.json({type: ResponseTypes.NoUserFound});
         }
 
-        res.send({type: ResponseTypes.UserData, data: account});
+        res.json({type: ResponseTypes.UserData, data: account});
 
     }
 };

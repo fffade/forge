@@ -12,7 +12,10 @@ const ResponseTypes =
     NoUserFound: 'NO_USER_FOUND',
     AuthFailed: 'AUTHENTICATION_FAILED',
     AuthSuccess: 'AUTHENTICATION_OKAY',
-    AuthMismatch: 'AUTHENTICATION_MISMATCH'
+    AuthMismatch: 'AUTHENTICATION_MISMATCH',
+    InvalidParameter: 'INVALID_PARAM',
+    Error: 'ERROR_UNKNOWN',
+    Success: 'OPERATION_SUCCESS'
 };
 
 export { ResponseTypes };

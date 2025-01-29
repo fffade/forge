@@ -29,11 +29,11 @@ model Habit {
   id            Int     @id @unique @default(autoincrement()) @map("habit_id")
   description   String
   type          String
-  difficulty    Int
-  points        Int
-  targetNumber  Int
-  currentNumber Int
-  isDone        Int
+  difficulty    Int     @default(0)
+  points        Int     @default(5)
+  targetNumber  Int?
+  currentNumber Int?
+  isDone        Int     @default(0)
   accountId     Int     @map("account_id")
   account       Account @relation(fields: [accountId], references: [id])
 
