@@ -18,7 +18,24 @@ export const getHabits = async (accountId) =>
 
     const json = await response.json();
 
-    console.log(json);
+    // console.log(json);
 
     return json.data;
 };
+
+// Add a new user habit
+export const createHabit = async (accountId, props) =>
+{
+    props.account_id = accountId;
+
+    const response = await fetch(`http://localhost:4000/habit/add`, { method: 'POST', body: props}).catch((err) => {
+        alert("Error connecting to back-end, please report the following information to support: " + err);
+        throw err;
+    });
+
+    const json = await response.json();
+
+    console.log(json);
+
+    return json.data;
+}
